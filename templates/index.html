@@ -1,0 +1,80 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #stopButton {
+            display: none;  /* Initially hide the stop button */
+        }
+
+        p {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object Detection App</h1>
+    <form id="detectionForm" method="post" action="{{ url_for('run_detection') }}">
+        <button type="submit" id="runButton" onclick="toggleButtons()">Run Object Detection</button>
+        <button type="button" id="stopButton" onclick="stopDetection()">Stop Detection</button>
+    </form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    <script>
+        function toggleButtons() {
+            // Toggle visibility of buttons
+            document.getElementById('runButton').style.display = 'none';
+            document.getElementById('stopButton').style.display = 'block';
+
+            // Send an AJAX request to start the detection
+            fetch('/run_detection', {
+                method: 'POST'
+            });
+        }
+
+        function stopDetection() {
+            // Send an AJAX request to stop the detection
+            fetch('/stop_detection', {
+                method: 'POST'
+            });
+
+            // Toggle visibility of buttons
+            document.getElementById('runButton').style.display = 'block';
+            document.getElementById('stopButton').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
