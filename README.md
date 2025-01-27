@@ -1,4 +1,4 @@
-DLive Detect: Real-Time Object Detection with Deep Learning
+**DLive Detect: Real-Time Object Detection with Deep Learning**
 
 **Project Overview**
 DLive Detect is a Flask-based web application that performs real-time object detection using the YOLOv8 model. This project aims to demonstrate the capabilities of deep learning in identifying objects accurately and efficiently in real-world scenarios.
